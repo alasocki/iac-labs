@@ -32,15 +32,95 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
+
+  lint:
+
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./example-app
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+    - name: Install dependencies
+      run: |
+        poetry install --no-root
     - name: Lint with flake8
       run: |
         poetry run task lint
+        
+  formatter:
+
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./example-app
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+    - name: Install dependencies
+      run: |
+        poetry install --no-root
     - name: Formatter with formatter
       run: |
         poetry run task formatter
+
+  security:
+
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./example-app
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+    - name: Install dependencies
+      run: |
+        poetry install --no-root
     - name: Security with bandit
       run: |
         poetry run task security
+
+  tests:
+
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./example-app
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+    - name: Install dependencies
+      run: |
+        poetry install --no-root
     - name: Test with pytest
       run: |
         poetry run task test
